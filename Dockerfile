@@ -9,5 +9,6 @@ RUN CGO_ENABLED=0 go build -v
 
 FROM scratch
 COPY --from=build /usr/local/src/approle-demo/approle-demo /usr/local/bin/approle-demo
+ARG VAULT_ROLE_ID
 ENV VAULT_ROLE_ID=$VAULT_ROLE_ID
 ENTRYPOINT ["/usr/local/bin/approle-demo"]
