@@ -49,3 +49,4 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: VAULT_ROLE_ID=${{ secrets.VAULT_ROLE_ID }}

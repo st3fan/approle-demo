@@ -17,9 +17,12 @@ func main() {
 		port = "8080"
 	}
 
+	// vault write auth/approle/login role_id=${ROLE_ID} secret_id=${SECRET_ID}
+	// use the returned token to fetch the actual secret
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/plain")
-		fmt.Fprintln(w, "Hello, this is an App Role demo!")
+		fmt.Fprintf(w, "Hello, this is an App Role demo! My VAULT_ROLE_ID is %s\n", os.Getenv("VAULT_ROLE_ID"))
 	})
 
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
